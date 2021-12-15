@@ -1,6 +1,6 @@
 package vendingmachine.domain.product;
 
-public class Product {
+public class Product implements Comparable<Product> {
 
 	private String name;
 	private int price;
@@ -28,5 +28,10 @@ public class Product {
 
 	public int getStock() {
 		return stock;
+	}
+
+	@Override
+	public int compareTo(Product o) {
+		return this.price - o.price;
 	}
 }

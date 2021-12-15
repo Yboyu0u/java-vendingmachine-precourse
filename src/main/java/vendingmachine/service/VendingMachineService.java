@@ -34,17 +34,18 @@ public class VendingMachineService {
 	public void postInputCost(String input) {
 		// TODO: validation 처리
 		vendingMachine.saveInputCost(Integer.parseInt(input));
+		vendingMachine.getInputCost();
 	}
 
 	public boolean postProductNameBePurchase(String input) {
 		// TODO: validation 처리
+		vendingMachine.subtractInputCostAndProductStockByProduct(input);
 		vendingMachine.getInputCost();
 
-		// 구매할 상품명 입력받고 투입금액빼기
-		vendingMachine.subtractInputCostAndProductStockByProduct(input);
+		return vendingMachine.checkWhetherGetBalanceOrNot();
 	}
 
 	public void getChange() {
-
+		vendingMachine.getChangeCoin();
 	}
 }

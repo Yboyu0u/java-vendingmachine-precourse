@@ -12,8 +12,10 @@ public class ResponseMessage {
 	}
 
 	public static void printCoinInMap(Map<Integer, Integer> coinMap) {
+		printLineBreaker();
 		coinMap.keySet()
 			.forEach(key -> System.out.println(makeCoinAAndAMountFormat(key, coinMap.get(key))));
+		printLineBreaker();
 	}
 
 	private static String makeCoinAAndAMountFormat(int coin, int amount) {
@@ -21,6 +23,15 @@ public class ResponseMessage {
 	}
 
 	public static void printInputCost(int inputCost) {
-		System.out.print(inputCost + Message.MONEY_UNIT);
+		printLineBreaker();
+		System.out.println(Message.PRINT_INPUT_COST + inputCost + Message.MONEY_UNIT);
+	}
+
+	public static void printChange() {
+		System.out.println(Message.PRINT_CHANGE);
+	}
+
+	public static void printLineBreaker() {
+		System.out.print(Message.LINE_BREAKER);
 	}
 }

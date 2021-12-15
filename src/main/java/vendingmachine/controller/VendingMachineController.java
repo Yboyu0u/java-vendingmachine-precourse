@@ -25,7 +25,6 @@ public class VendingMachineController {
 	}
 
 	public void postProductInformation() {
-		ResponseMessage.of(Message.LINE_BREAKER);
 
 		try {
 			ResponseMessage.of(Message.ENTER_PRODUCT_INFORMATION);
@@ -37,21 +36,22 @@ public class VendingMachineController {
 	}
 
 	public void postInputCost() {
-		ResponseMessage.of(Message.LINE_BREAKER);
-
 		try {
+			ResponseMessage.printLineBreaker();
 			ResponseMessage.of(Message.ENTER_INPUT_COST);
 			vendingMachineService.postInputCost(Console.readLine());
 		} catch (IllegalArgumentException e) {
 			ResponseError.of(e.getMessage());
 		}
-
 	}
 
 	public void postProductNameBePurchase() {
-
 		try {
-			vendingMachineService.postProductNameBePurchase(Console.readLine());
+			boolean start = true;
+			while(start) {
+				ResponseMessage.of(Message.ENTER_PRODUCT_NAME_BE_PURCHASE);
+				start = vendingMachineService.postProductNameBePurchase(Console.readLine());
+			}
 		} catch (IllegalArgumentException e) {
 			ResponseError.of(e.getMessage());
 		}

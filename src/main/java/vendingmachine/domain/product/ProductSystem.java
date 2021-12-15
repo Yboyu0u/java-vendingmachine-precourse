@@ -1,6 +1,7 @@
 package vendingmachine.domain.product;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,5 +40,22 @@ public class ProductSystem {
 			.filter(product -> product.getName().equals(productName))
 			.collect(Collectors.toList())
 			.get(0);
+	}
+
+	public boolean isNotValidInputCost(int inputCost) {
+		Collections.sort(productList);
+		if(productList.get(0).getPrice() > inputCost) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public boolean isOutOfStock() {
+		if(productList.stream().filter(product -> product.getStock() > 0).count() == 0) {
+			return true;
+		}
+
+		return false;
 	}
 }

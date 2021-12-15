@@ -19,7 +19,7 @@ public class VendingMachine {
 	}
 
 	public void makeCoin(int money) {
-		coinSystem.makeCoinInCoinMap(money);
+		coinSystem.inCoinMap(money);
 	}
 
 	public void getCoin() {
@@ -31,7 +31,7 @@ public class VendingMachine {
 	}
 
 	public void saveInputCost(int inputCost) {
-		if(inputCost > 0) {
+		if(this.inputCost == 0) {
 			this.inputCost = inputCost;
 		}
 	}
@@ -45,4 +45,12 @@ public class VendingMachine {
 		inputCost -= productSystem.findPriceAndSubtractStockByProductName(productName);
 	}
 
+	public boolean checkWhetherGetBalanceOrNot() {
+		return !productSystem.isNotValidInputCost(inputCost) && !productSystem.isOutOfStock();
+	}
+
+	public void getChangeCoin() {
+		ResponseMessage.printChange();
+		// coinSystem.getCalculatedChangeCoin();
+	}
 }

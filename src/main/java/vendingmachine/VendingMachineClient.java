@@ -11,6 +11,10 @@ public class VendingMachineClient {
 	}
 
 	public void start() {
-
+		vendingMachineController.postMoneyVendingMachineHas();
+		vendingMachineController.postProductInformation();
+		vendingMachineController.postInputCost();
+		vendingMachineController.postProductNameBePurchase();
+		vendingMachineController.getChange();
 	}
 }

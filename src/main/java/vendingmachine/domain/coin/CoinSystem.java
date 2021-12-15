@@ -1,5 +1,7 @@
 package vendingmachine.domain.coin;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -10,14 +12,15 @@ public class CoinSystem {
 	private Map<Integer, Integer> coinMap;
 
 	public CoinSystem() {
-		this.coinMap = new TreeMap<>();
+		this.coinMap = new TreeMap<>(Collections.reverseOrder());
+		for(Coin coin: Coin.values()) {
+			coinMap.put(coin.getAmount(),0);
+		}
 	}
 
-	public void makeCoinInCoinMap(int money) {
-		int randomCoin = RandomCoinUtil.generateRandomCoin();
-
+	public void inCoinMap(int money) {
 		while(money > 0) {
-			money = subtractMoney(money,randomCoin);
+			money = subtractMoney(money,RandomCoinUtil.generateRandomCoin());
 		}
 	}
 
@@ -33,4 +36,12 @@ public class CoinSystem {
 	public void getCoinInCoinMap() {
 		ResponseMessage.printCoinInMap(coinMap);
 	}
+
+	// public void getCalculatedChangeCoin() {
+	// 	ResponseMessage.printCoinInMap(calculateChangeCoin());
+	// }
+
+	// private Map<Integer,Integer> calculateChangeCoin() {
+	//
+	// }
 }
