@@ -12,7 +12,6 @@ public class ResponseMessage {
 	}
 
 	public static void printCoinInMap(Map<Integer, Integer> coinMap) {
-		printLineBreaker();
 		coinMap.keySet()
 			.forEach(key -> System.out.println(makeCoinAAndAMountFormat(key, coinMap.get(key))));
 		printLineBreaker();

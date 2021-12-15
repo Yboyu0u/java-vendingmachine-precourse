@@ -4,6 +4,7 @@ import java.util.List;
 
 import vendingmachine.domain.coin.CoinSystem;
 import vendingmachine.domain.product.ProductSystem;
+import vendingmachine.message.Message;
 import vendingmachine.message.dto.ResponseMessage;
 
 public class VendingMachine {
@@ -23,6 +24,8 @@ public class VendingMachine {
 	}
 
 	public void getCoin() {
+		ResponseMessage.printLineBreaker();
+		ResponseMessage.of(Message.PRINT_VENDING_MACHINE_COIN);
 		coinSystem.getCoinInCoinMap();
 	}
 
@@ -51,6 +54,6 @@ public class VendingMachine {
 
 	public void getChangeCoin() {
 		ResponseMessage.printChange();
-		// coinSystem.getCalculatedChangeCoin();
+		coinSystem.getCalculatedChangeCoin(inputCost);
 	}
 }
