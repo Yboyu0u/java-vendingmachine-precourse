@@ -22,13 +22,12 @@ public class VendingMachineController {
 			ResponseError.of(e.getMessage());
 			postMoneyVendingMachineHas();
 		}
-
 	}
 
 	public void postProductInformation() {
-
 		try {
-			vendingMachineService.postProductInformation();
+			ResponseMessage.of(Message.ENTER_PRODUCT_INFORMATION);
+			vendingMachineService.postProductInformation(Console.readLine());
 		} catch (IllegalArgumentException e) {
 			ResponseError.of(e.getMessage());
 		}
