@@ -9,7 +9,7 @@ public class Message {
 	public static final String PRINT_INPUT_COST = "투입 금액: ";
 	public static final String ENTER_PRODUCT_NAME_BE_PURCHASE = "구매할 상품명을 입력해 주세요.";
 	public static final String PRINT_CHANGE = "잔돈";
-	public static final String MONEY_UNIT = "돈";
+	public static final String MONEY_UNIT = "원";
 	public static final String AMOUNT_UNIT = "개";
 	public static final String LINE_BREAKER = "\n";
 

@@ -4,6 +4,7 @@ import java.util.List;
 
 import vendingmachine.domain.coin.CoinSystem;
 import vendingmachine.domain.product.ProductSystem;
+import vendingmachine.message.dto.ResponseMessage;
 
 public class VendingMachine {
 
@@ -35,4 +36,7 @@ public class VendingMachine {
 		}
 	}
 
+	public void getInputCost() {
+
+	}
 }

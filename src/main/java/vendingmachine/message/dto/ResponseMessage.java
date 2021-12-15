@@ -19,4 +19,8 @@ public class ResponseMessage {
 	private static String makeCoinAAndAMountFormat(int coin, int amount) {
 		return coin + Message.MONEY_UNIT + Sign.COIN_AMOUNT_DIVISOR + amount + Message.AMOUNT_UNIT;
 	}
+
+	public static void printInputCost(int inputCost) {
+		System.out.print(inputCost + Message.MONEY_UNIT);
+	}
 }

@@ -51,7 +51,7 @@ public class VendingMachineController {
 	public void postProductNameBePurchase() {
 
 		try {
-			vendingMachineService.postProductNameBePurchase();
+			vendingMachineService.postProductNameBePurchase(Console.readLine());
 		} catch (IllegalArgumentException e) {
 			ResponseError.of(e.getMessage());
 		}

@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import vendingmachine.domain.VendingMachine;
 import vendingmachine.message.Sign;
+import vendingmachine.message.dto.ResponseMessage;
 
 public class VendingMachineService {
 
@@ -33,13 +34,14 @@ public class VendingMachineService {
 
 	public void postInputCost(String input) {
 		// TODO: validation 처리
-
-		// 투입 금액 저장
 		vendingMachine.saveInputCost(Integer.parseInt(input));
 	}
 
-	public void postProductNameBePurchase() {
+	public boolean postProductNameBePurchase(String input) {
 		// TODO: validation 처리
+		vendingMachine.getInputCost();
+
+		// 구매할 상품명 입력받고 투입금액빼기
 	}
 
 	public void getChange() {
