@@ -31,8 +31,11 @@ public class VendingMachineService {
 
 	}
 
-	public void postInputCost() {
+	public void postInputCost(String input) {
 		// TODO: validation 처리
+
+		// 투입 금액 저장
+		vendingMachine.saveInputCost(Integer.parseInt(input));
 	}
 
 	public void postProductNameBePurchase() {

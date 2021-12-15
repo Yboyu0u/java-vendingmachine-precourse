@@ -9,10 +9,12 @@ public class VendingMachine {
 
 	private CoinSystem coinSystem;
 	private ProductSystem productSystem;
+	private int inputCost;
 
 	public VendingMachine() {
 		this.coinSystem = new CoinSystem();
 		this.productSystem = new ProductSystem();
+		this.inputCost = 0;
 	}
 
 	public void makeCoin(int money) {
@@ -25,6 +27,12 @@ public class VendingMachine {
 
 	public void addProducts(List<String> products) {
 		productSystem.takeProducts(products);
+	}
+
+	public void saveInputCost(int inputCost) {
+		if(inputCost > 0) {
+			this.inputCost = inputCost;
+		}
 	}
 
 }
