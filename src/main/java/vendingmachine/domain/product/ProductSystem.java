@@ -2,6 +2,7 @@ package vendingmachine.domain.product;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import vendingmachine.message.Sign;
 
@@ -27,4 +28,16 @@ public class ProductSystem {
 		productList.add(new Product(product[NAME], Integer.parseInt(product[PRICE]), Integer.parseInt(product[STOCK])));
 	}
 
+	public int findPriceAndSubtractStockByProductName(String productName) {
+		Product product =  findProductByProductName(productName);
+		product.subtractStock();
+		return product.getPrice();
+	}
+
+	public Product findProductByProductName(String productName) {
+		return productList.stream()
+			.filter(product -> product.getName().equals(productName))
+			.collect(Collectors.toList())
+			.get(0);
+	}
 }
