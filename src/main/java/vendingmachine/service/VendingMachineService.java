@@ -5,8 +5,10 @@ import java.util.stream.Collectors;
 
 import vendingmachine.domain.VendingMachine;
 import vendingmachine.message.Sign;
+import vendingmachine.validation.validator.InputCostValidator;
+import vendingmachine.validation.validator.InputProductNameValidator;
 import vendingmachine.validation.validator.InputProductsValidator;
-import vendingmachine.validation.validator.VendingMachineMoneyValidator;
+import vendingmachine.validation.validator.InputVendingMachineMoneyValidator;
 
 public class VendingMachineService {
 
@@ -17,7 +19,7 @@ public class VendingMachineService {
 	}
 
 	public void postMoneyVendingMachineHas(String input) {
-		VendingMachineMoneyValidator.validate(input);
+		InputVendingMachineMoneyValidator.validate(input);
 
 		vendingMachine.makeCoin(Integer.parseInt(input));
 		vendingMachine.getCoin();
@@ -35,13 +37,15 @@ public class VendingMachineService {
 	}
 
 	public void postInputCost(String input) {
-		// TODO: validation 처리
+		InputCostValidator.validate(input);
+
 		vendingMachine.saveInputCost(Integer.parseInt(input));
 		vendingMachine.getInputCost();
 	}
 
 	public boolean postProductNameBePurchase(String input) {
-		// TODO: validation 처리
+		InputProductNameValidator.validateIsBlank(input);
+
 		vendingMachine.subtractInputCostAndProductStockByProduct(input);
 		vendingMachine.getInputCost();
 

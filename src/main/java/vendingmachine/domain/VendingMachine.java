@@ -44,7 +44,6 @@ public class VendingMachine {
 	}
 
 	public void subtractInputCostAndProductStockByProduct(String productName) {
-		// productSys 에서 name 가격 찾고 inputCost 에서 빼기
 		inputCost -= productSystem.findPriceAndSubtractStockByProductName(productName);
 	}
 

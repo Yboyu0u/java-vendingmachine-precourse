@@ -29,7 +29,7 @@ public class ProductSystem {
 	}
 
 	public int findPriceAndSubtractStockByProductName(String productName) {
-		Product product =  findProductByProductName(productName);
+		Product product = findProductByProductName(productName);
 		product.subtractStock();
 		return product.getPrice();
 	}
