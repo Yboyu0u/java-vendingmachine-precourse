@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import vendingmachine.domain.VendingMachine;
 import vendingmachine.message.Sign;
+import vendingmachine.validation.validator.VendingMachineMoneyValidator;
 
 public class VendingMachineService {
 
@@ -15,7 +16,7 @@ public class VendingMachineService {
 	}
 
 	public void postMoneyVendingMachineHas(String input) {
-		// TODO: validation 처리
+		VendingMachineMoneyValidator.validateVendingMachineMoney(input);
 		vendingMachine.makeCoin(Integer.parseInt(input));
 		vendingMachine.getCoin();
 	}
