@@ -6,12 +6,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import vendingmachine.message.Sign;
+import vendingmachine.validation.validator.InputProductValidator;
 
 public class ProductSystem {
-
-	private static final int NAME = 0;
-	private static final int PRICE = 1;
-	private static final int STOCK = 2;
 
 	private List<Product> productList;
 
@@ -26,10 +23,9 @@ public class ProductSystem {
 
 	private void addProductInProductList(String rowProduct) {
 		String[] product = rowProduct.split(Sign.PRODUCT_DIVISOR);
+		InputProductValidator.validateProduct(product);
 
-		//TODO: validation
-
-		productList.add(new Product(product[NAME], Integer.parseInt(product[PRICE]), Integer.parseInt(product[STOCK])));
+		productList.add(new Product(product[ProductUnit.NAME], Integer.parseInt(product[ProductUnit.PRICE]), Integer.parseInt(product[ProductUnit.STOCK])));
 	}
 
 	public int findPriceAndSubtractStockByProductName(String productName) {
