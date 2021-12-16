@@ -11,13 +11,18 @@ import vendingmachine.validation.validator.InputProductValidator;
 
 public class ProductSystem {
 
-	private final List<Product> productList;
+	private List<Product> productList;
 
 	public ProductSystem() {
 		this.productList = new ArrayList<>();
 	}
 
+	private void initProductList() {
+		productList = new ArrayList<>();
+	}
+
 	public void takeProducts(List<String> products) {
+		initProductList();
 		products.forEach(this::addProductInProductList);
 	}
 
