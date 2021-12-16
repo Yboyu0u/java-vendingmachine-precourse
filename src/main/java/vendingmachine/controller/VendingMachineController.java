@@ -25,14 +25,13 @@ public class VendingMachineController {
 	}
 
 	public void postProductInformation() {
-
 		try {
 			ResponseMessage.of(Message.ENTER_PRODUCT_INFORMATION);
 			vendingMachineService.postProductInformation(Console.readLine());
 		} catch (IllegalArgumentException e) {
 			ResponseError.of(e.getMessage());
+			postProductInformation();
 		}
-
 	}
 
 	public void postInputCost() {
@@ -42,6 +41,7 @@ public class VendingMachineController {
 			vendingMachineService.postInputCost(Console.readLine());
 		} catch (IllegalArgumentException e) {
 			ResponseError.of(e.getMessage());
+			postInputCost();
 		}
 	}
 
@@ -54,6 +54,7 @@ public class VendingMachineController {
 			}
 		} catch (IllegalArgumentException e) {
 			ResponseError.of(e.getMessage());
+			postProductNameBePurchase();
 		}
 
 	}

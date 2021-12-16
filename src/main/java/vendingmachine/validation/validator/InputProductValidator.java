@@ -20,7 +20,10 @@ public class InputProductValidator {
 	private static final String IS_NOT_RIGHT_FORMAT = "개별 상품은 대괄호([])로 묶어 세미콜론(;)으로 구분한다.";
 
 	public static void validate(String rowProduct, List<Product> productList) {
-		String[] product = rowProduct.split(Sign.PRODUCT_DIVISOR);
+		String[] product = rowProduct
+			.replaceAll("\\[", Sign.NULL)
+			.replaceAll("\\]", Sign.NULL)
+			.split(Sign.PRODUCT_DIVISOR);
 
 		isBlank(product);
 		isLengthThree(product);
@@ -38,7 +41,7 @@ public class InputProductValidator {
 	}
 
 	private static void isFormat(String input) {
-		if (input.charAt(0) == Sign.OPEN_BRACKET || input.charAt(input.length() - 1) == Sign.CLOSE_BRACKET) {
+		if (input.charAt(0) != Sign.OPEN_BRACKET || input.charAt(input.length() - 1) != Sign.CLOSE_BRACKET) {
 			throw new IllegalArgumentException(IS_NOT_RIGHT_FORMAT);
 		}
 	}
