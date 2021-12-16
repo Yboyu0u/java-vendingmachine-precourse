@@ -13,8 +13,8 @@ public class Product implements Comparable<Product> {
 	}
 
 	public void subtractStock() {
-		if(stock > 0) {
-			stock -- ;
+		if (stock > 0) {
+			stock--;
 		}
 	}
 

@@ -15,20 +15,20 @@ public class CoinSystem {
 
 	public CoinSystem() {
 		this.coinMap = new TreeMap<>(Collections.reverseOrder());
-		for(Coin coin: Coin.values()) {
-			coinMap.put(coin.getAmount(),0);
+		for (Coin coin : Coin.values()) {
+			coinMap.put(coin.getAmount(), 0);
 		}
 	}
 
 	public void inCoinMap(int money) {
-		while(money > 0) {
-			money = subtractMoney(money,RandomCoinUtil.generateRandomCoin());
+		while (money > 0) {
+			money = subtractMoney(money, RandomCoinUtil.generateRandomCoin());
 		}
 	}
 
 	private int subtractMoney(int money, int randomCoin) {
-		if(money >= randomCoin) {
-			coinMap.put(randomCoin,coinMap.get(randomCoin)+1);
+		if (money >= randomCoin) {
+			coinMap.put(randomCoin, coinMap.get(randomCoin) + 1);
 			money -= randomCoin;
 		}
 
@@ -43,8 +43,8 @@ public class CoinSystem {
 		ResponseMessage.printCoinInMap(calculateChangeCoin(inputCost));
 	}
 
-	private Map<Integer,Integer> calculateChangeCoin(int inputCost) {
-		change = Math.min(inputCost,getSumOfCoin());
+	private Map<Integer, Integer> calculateChangeCoin(int inputCost) {
+		change = Math.min(inputCost, getSumOfCoin());
 		changeMap = new TreeMap<>(Comparator.reverseOrder());
 		coinMap.keySet().forEach(key -> addChangeMapToCoin(key, coinMap.get(key)));
 
@@ -52,7 +52,7 @@ public class CoinSystem {
 	}
 
 	private int getSumOfCoin() {
-		return coinMap.keySet().stream().map(key -> key * coinMap.get(key)).reduce(0,Integer::sum);
+		return coinMap.keySet().stream().map(key -> key * coinMap.get(key)).reduce(0, Integer::sum);
 	}
 
 	private void addChangeMapToCoin(int key, int value) {

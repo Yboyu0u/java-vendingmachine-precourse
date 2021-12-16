@@ -26,12 +26,13 @@ public class ProductSystem {
 		String[] product = rowProduct.split(Sign.PRODUCT_DIVISOR);
 		InputProductValidator.validate(product);
 
-		productList.add(new Product(product[ProductUnit.NAME], Integer.parseInt(product[ProductUnit.PRICE]), Integer.parseInt(product[ProductUnit.STOCK])));
+		productList.add(new Product(product[ProductUnit.NAME], Integer.parseInt(product[ProductUnit.PRICE]),
+			Integer.parseInt(product[ProductUnit.STOCK])));
 	}
 
 	public int findPriceAndSubtractStockByProductName(String productName) {
-		//TODO: validation
 		InputProductNameValidator.validate(productName, productList);
+
 		Product product = findProductByProductName(productName);
 		product.subtractStock();
 		return product.getPrice();
@@ -46,7 +47,7 @@ public class ProductSystem {
 
 	public boolean isNotValidInputCost(int inputCost) {
 		Collections.sort(productList);
-		if(productList.get(0).getPrice() > inputCost) {
+		if (productList.get(0).getPrice() > inputCost) {
 			return true;
 		}
 
@@ -54,7 +55,7 @@ public class ProductSystem {
 	}
 
 	public boolean isOutOfStock() {
-		if(productList.stream().filter(product -> product.getStock() > 0).count() == 0) {
+		if (productList.stream().filter(product -> product.getStock() > 0).count() == 0) {
 			return true;
 		}
 

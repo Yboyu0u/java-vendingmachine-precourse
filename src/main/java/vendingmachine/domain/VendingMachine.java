@@ -34,7 +34,7 @@ public class VendingMachine {
 	}
 
 	public void saveInputCost(int inputCost) {
-		if(this.inputCost == 0) {
+		if (this.inputCost == 0) {
 			this.inputCost = inputCost;
 		}
 	}

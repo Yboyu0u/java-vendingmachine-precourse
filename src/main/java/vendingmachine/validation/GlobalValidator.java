@@ -1,15 +1,17 @@
 package vendingmachine.validation;
 
-public class GlobalValidator {
+import vendingmachine.message.Sign;
 
-	// 빈 값 확인
+//TODO: 상수화
+public class GlobalValidator {
+	private static final int TEN = 10;
+
 	public static void validateInputIsBlank(String input, String errorMessage) {
-		if (input.replaceAll(" ", "").length() == 0) {
+		if (input.replaceAll(Sign.SPACE, Sign.NULL).length() == 0) {
 			throw new IllegalArgumentException(errorMessage);
 		}
 	}
 
-	// 자연수가 아닌 경우
 	public static void validateInputIsNaturalNumber(String input, String errorMessage) {
 		for (char c : input.toCharArray()) {
 			isNegativeNumberOrCharacter(c, errorMessage);
@@ -26,9 +28,8 @@ public class GlobalValidator {
 		}
 	}
 
-	// 10으로 나누어 떨어지지 않는 경우
 	public static void validateInputIsDivideTen(String input, String errorMessage) {
-		if (Integer.parseInt(input) % 10 != 0) {
+		if (Integer.parseInt(input) % TEN != 0) {
 			throw new IllegalArgumentException(errorMessage);
 		}
 	}

@@ -6,6 +6,7 @@ import vendingmachine.domain.product.ProductUnit;
 import vendingmachine.validation.GlobalValidator;
 
 public class InputProductValidator {
+	private static final int PRODUCT_LENGTH = 3;
 
 	private static final String IS_BLANK_ERROR = "상품명, 가격, 수량이 각각 빈 값일 수 없습니다.";
 	private static final String IS_NOT_LENGTH_THREE = "상품명, 가격, 수량이 모두 입력되야 하고 다른 품목은 입력될 수 없습니다.";
@@ -29,7 +30,7 @@ public class InputProductValidator {
 	}
 
 	private static void isLengthThree(String[] product) {
-		if(product.length != 3) {
+		if(product.length != PRODUCT_LENGTH) {
 			throw new IllegalArgumentException(IS_NOT_LENGTH_THREE);
 		}
 	}

@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 import vendingmachine.domain.VendingMachine;
 import vendingmachine.message.Sign;
 import vendingmachine.validation.validator.InputCostValidator;
-import vendingmachine.validation.validator.InputProductNameValidator;
 import vendingmachine.validation.validator.InputProductsValidator;
 import vendingmachine.validation.validator.InputVendingMachineMoneyValidator;
 
@@ -28,10 +27,11 @@ public class VendingMachineService {
 	public void postProductInformation(String input) {
 		InputProductsValidator.validate(input);
 
+		//TODO: 기호 상수화
 		vendingMachine.addProducts(Arrays
 			.stream(input
-				.replaceAll("\\[","")
-				.replaceAll("\\]","")
+				.replaceAll("\\[", Sign.NULL)
+				.replaceAll("\\]", Sign.NULL)
 				.split(Sign.PRODUCTS_DIVISOR))
 			.collect(Collectors.toList()));
 	}

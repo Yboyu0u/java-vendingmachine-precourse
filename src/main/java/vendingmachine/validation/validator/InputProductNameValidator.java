@@ -27,10 +27,8 @@ public class InputProductNameValidator {
 	}
 
 	private static void isOutOfStock(String name, List<Product> productList) {
-		if(productList.get(0).getStock() == 0) {
+		if (productList.get(0).getStock() == 0) {
 			throw new IllegalArgumentException(IS_OUT_OF_STOCK);
 		}
 	}
-
-
 }

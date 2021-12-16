@@ -48,7 +48,7 @@ public class VendingMachineController {
 	public void postProductNameBePurchase() {
 		try {
 			boolean start = true;
-			while(start) {
+			while (start) {
 				ResponseMessage.of(Message.ENTER_PRODUCT_NAME_BE_PURCHASE);
 				start = vendingMachineService.postProductNameBePurchase(Console.readLine());
 			}
