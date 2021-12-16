@@ -17,14 +17,14 @@ public class VendingMachineService {
 	}
 
 	public void postMoneyVendingMachineHas(String input) {
-		VendingMachineMoneyValidator.validateVendingMachineMoney(input);
+		VendingMachineMoneyValidator.validate(input);
 
 		vendingMachine.makeCoin(Integer.parseInt(input));
 		vendingMachine.getCoin();
 	}
 
 	public void postProductInformation(String input) {
-		InputProductsValidator.validateProducts(input);
+		InputProductsValidator.validate(input);
 
 		vendingMachine.addProducts(Arrays
 			.stream(input

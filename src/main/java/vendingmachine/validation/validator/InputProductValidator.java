@@ -14,10 +14,10 @@ public class InputProductValidator {
 	private static final String STOCK_IS_NOT_NATURAL_NUMBER = "상품 수량은 자연수여야 합니다.";
 
 
-	public static void validateProduct(String[] product) {
+	public static void validate(String[] product) {
 		isLengthThree(product);
 		isBlank(product);
-		Price(product[ProductUnit.PRICE]);
+		price(product[ProductUnit.PRICE]);
 		stock((product[ProductUnit.STOCK]));
 
 	}
@@ -34,7 +34,7 @@ public class InputProductValidator {
 		}
 	}
 
-	private static void Price(String price) {
+	private static void price(String price) {
 		GlobalValidator.validateInputIsNaturalNumber(price, PRICE_IS_NOT_NATURAL_NUMBER);
 		GlobalValidator.validateInputIsDivideTen(price, PRICE_IS_NOT_DIVIDE_TEN);
 	}
