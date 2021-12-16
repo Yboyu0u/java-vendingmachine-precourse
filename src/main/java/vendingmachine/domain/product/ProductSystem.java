@@ -13,10 +13,6 @@ public class ProductSystem {
 
 	private List<Product> productList;
 
-	public ProductSystem() {
-		this.productList = new ArrayList<>();
-	}
-
 	private void initProductList() {
 		productList = new ArrayList<>();
 	}
