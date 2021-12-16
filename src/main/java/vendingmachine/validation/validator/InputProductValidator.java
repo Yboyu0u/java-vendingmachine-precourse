@@ -17,11 +17,15 @@ public class InputProductValidator {
 	private static final String PRICE_IS_NOT_DIVIDE_TEN = "상품 가격은 10으로 나누어 떨어져야 합니다.";
 	private static final String STOCK_IS_NOT_NATURAL_NUMBER = "상품 수량은 자연수여야 합니다.";
 	private static final String IS_DISTINCT_ERROR = "상품은 중복될 수 없습니다.";
+	private static final String IS_NOT_RIGHT_FORMAT = "개별 상품은 대괄호([])로 묶어 세미콜론(;)으로 구분한다.";
 
 
-	public static void validate(String[] product, List<Product> productList) {
-		isLengthThree(product);
+	public static void validate(String rowProduct, List<Product> productList) {
+		String[] product = rowProduct.split(Sign.PRODUCT_DIVISOR);
+
 		isBlank(product);
+		isLengthThree(product);
+		isFormat(rowProduct);
 		price(product[ProductUnit.PRICE]);
 		stock((product[ProductUnit.STOCK]));
 		isDistinct(product[ProductUnit.NAME],productList);
@@ -31,6 +35,12 @@ public class InputProductValidator {
 		Arrays
 			.stream(product)
 			.forEach(unit -> GlobalValidator.validateInputIsBlank(unit.replaceAll(Sign.SPACE, Sign.NULL), IS_BLANK_ERROR));
+	}
+
+	private static void isFormat(String input) {
+		if(input.charAt(0) =='[' || input.charAt(input.length()-1) == ']') {
+			throw new IllegalArgumentException(IS_NOT_RIGHT_FORMAT);
+		}
 	}
 
 	private static void isLengthThree(String[] product) {

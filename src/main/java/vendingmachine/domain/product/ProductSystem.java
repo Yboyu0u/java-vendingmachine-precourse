@@ -18,14 +18,13 @@ public class ProductSystem {
 	}
 
 	public void takeProducts(List<String> products) {
-		products.stream()
-			.forEach(rowProduct -> addProductInProductList(rowProduct));
+		products.forEach(rowProduct -> addProductInProductList(rowProduct));
 	}
 
 	private void addProductInProductList(String rowProduct) {
-		String[] product = rowProduct.split(Sign.PRODUCT_DIVISOR);
-		InputProductValidator.validate(product, productList);
+		InputProductValidator.validate(rowProduct, productList);
 
+		String[] product = rowProduct.split(Sign.PRODUCT_DIVISOR);
 		productList.add(new Product(product[ProductUnit.NAME], Integer.parseInt(product[ProductUnit.PRICE]),
 			Integer.parseInt(product[ProductUnit.STOCK])));
 	}
