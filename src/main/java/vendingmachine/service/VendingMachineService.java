@@ -44,8 +44,6 @@ public class VendingMachineService {
 	}
 
 	public boolean postProductNameBePurchase(String input) {
-		InputProductNameValidator.validateIsBlank(input);
-
 		vendingMachine.subtractInputCostAndProductStockByProduct(input);
 		vendingMachine.getInputCost();
 
