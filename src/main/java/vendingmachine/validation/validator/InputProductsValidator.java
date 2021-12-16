@@ -8,11 +8,10 @@ public class InputProductsValidator {
 
 	public static void validate(String input) {
 		GlobalValidator.validateInputIsBlank(input, IS_BLANK_ERROR);
-		//TODO: 형식 관련 error
-
+		isFormat(input);
 	}
 
-	private static void validateProductsFormat(String input) {
+	private static void isFormat(String input) {
 
 	}
 
