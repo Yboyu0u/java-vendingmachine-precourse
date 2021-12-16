@@ -1,32 +1,36 @@
 package vendingmachine.validation.validator;
 
 import java.util.Arrays;
+import java.util.List;
 
+import vendingmachine.domain.product.Product;
 import vendingmachine.domain.product.ProductUnit;
+import vendingmachine.message.Sign;
 import vendingmachine.validation.GlobalValidator;
 
 public class InputProductValidator {
 	private static final int PRODUCT_LENGTH = 3;
 
 	private static final String IS_BLANK_ERROR = "상품명, 가격, 수량이 각각 빈 값일 수 없습니다.";
-	private static final String IS_NOT_LENGTH_THREE = "상품명, 가격, 수량이 모두 입력되야 하고 다른 품목은 입력될 수 없습니다.";
+	private static final String IS_NOT_LENGTH_THREE = "상품명, 가격, 수량이 모두 입력돼야 하고 다른 품목은 입력될 수 없습니다.";
 	private static final String PRICE_IS_NOT_NATURAL_NUMBER = "상품 가격은 자연수여야 합니다.";
 	private static final String PRICE_IS_NOT_DIVIDE_TEN = "상품 가격은 10으로 나누어 떨어져야 합니다.";
 	private static final String STOCK_IS_NOT_NATURAL_NUMBER = "상품 수량은 자연수여야 합니다.";
+	private static final String IS_DISTINCT_ERROR = "상품은 중복될 수 없습니다.";
 
 
-	public static void validate(String[] product) {
+	public static void validate(String[] product, List<Product> productList) {
 		isLengthThree(product);
 		isBlank(product);
 		price(product[ProductUnit.PRICE]);
 		stock((product[ProductUnit.STOCK]));
-
+		isDistinct(product[ProductUnit.NAME],productList);
 	}
 
 	private static void isBlank(String[] product) {
 		Arrays
 			.stream(product)
-			.forEach(unit -> GlobalValidator.validateInputIsBlank(unit.replaceAll(" ", ""), IS_BLANK_ERROR));
+			.forEach(unit -> GlobalValidator.validateInputIsBlank(unit.replaceAll(Sign.SPACE, Sign.NULL), IS_BLANK_ERROR));
 	}
 
 	private static void isLengthThree(String[] product) {
@@ -42,6 +46,12 @@ public class InputProductValidator {
 
 	private static void stock(String stock) {
 		GlobalValidator.validateInputIsNaturalNumber(stock,STOCK_IS_NOT_NATURAL_NUMBER);
+	}
+
+	private static void isDistinct(String name, List<Product> productList) {
+		if(productList.contains(new Product(name,0,0))) {
+			throw new IllegalArgumentException(IS_DISTINCT_ERROR);
+		}
 	}
 }
 
