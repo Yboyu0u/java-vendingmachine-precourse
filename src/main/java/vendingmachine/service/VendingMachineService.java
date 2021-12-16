@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import vendingmachine.domain.VendingMachine;
 import vendingmachine.message.Sign;
+import vendingmachine.validation.validator.InputProductsValidator;
 import vendingmachine.validation.validator.VendingMachineMoneyValidator;
 
 public class VendingMachineService {
@@ -17,19 +18,20 @@ public class VendingMachineService {
 
 	public void postMoneyVendingMachineHas(String input) {
 		VendingMachineMoneyValidator.validateVendingMachineMoney(input);
+
 		vendingMachine.makeCoin(Integer.parseInt(input));
 		vendingMachine.getCoin();
 	}
 
 	public void postProductInformation(String input) {
-		// TODO: validation 처리
+		InputProductsValidator.validateProducts(input);
+
 		vendingMachine.addProducts(Arrays
 			.stream(input
 				.replaceAll("\\[","")
 				.replaceAll("\\]","")
 				.split(Sign.PRODUCTS_DIVISOR))
 			.collect(Collectors.toList()));
-
 	}
 
 	public void postInputCost(String input) {

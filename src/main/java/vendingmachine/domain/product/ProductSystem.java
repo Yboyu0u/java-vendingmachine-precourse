@@ -26,6 +26,9 @@ public class ProductSystem {
 
 	private void addProductInProductList(String rowProduct) {
 		String[] product = rowProduct.split(Sign.PRODUCT_DIVISOR);
+
+		//TODO: validation
+
 		productList.add(new Product(product[NAME], Integer.parseInt(product[PRICE]), Integer.parseInt(product[STOCK])));
 	}
 
