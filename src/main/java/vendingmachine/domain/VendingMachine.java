@@ -9,8 +9,8 @@ import vendingmachine.message.dto.ResponseMessage;
 
 public class VendingMachine {
 
-	private CoinSystem coinSystem;
-	private ProductSystem productSystem;
+	private final CoinSystem coinSystem;
+	private final ProductSystem productSystem;
 	private int inputCost;
 
 	public VendingMachine() {

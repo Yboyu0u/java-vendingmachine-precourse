@@ -4,7 +4,7 @@ import vendingmachine.controller.VendingMachineController;
 
 public class VendingMachineClient {
 
-	private VendingMachineController vendingMachineController;
+	private final VendingMachineController vendingMachineController;
 
 	public VendingMachineClient() {
 		this.vendingMachineController = new VendingMachineController();

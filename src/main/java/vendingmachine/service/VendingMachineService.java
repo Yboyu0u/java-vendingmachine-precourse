@@ -11,7 +11,7 @@ import vendingmachine.validation.validator.InputVendingMachineMoneyValidator;
 
 public class VendingMachineService {
 
-	private VendingMachine vendingMachine;
+	private final VendingMachine vendingMachine;
 
 	public VendingMachineService() {
 		this.vendingMachine = new VendingMachine();
@@ -27,12 +27,8 @@ public class VendingMachineService {
 	public void postProductInformation(String input) {
 		InputProductsValidator.validate(input);
 
-		//TODO: 기호 상수화
 		vendingMachine.addProducts(Arrays
-			.stream(input
-				.replaceAll("\\[", Sign.NULL)
-				.replaceAll("\\]", Sign.NULL)
-				.split(Sign.PRODUCTS_DIVISOR))
+			.stream(input.split(Sign.PRODUCTS_DIVISOR))
 			.collect(Collectors.toList()));
 	}
 

@@ -19,7 +19,6 @@ public class InputProductValidator {
 	private static final String IS_DISTINCT_ERROR = "상품은 중복될 수 없습니다.";
 	private static final String IS_NOT_RIGHT_FORMAT = "개별 상품은 대괄호([])로 묶어 세미콜론(;)으로 구분한다.";
 
-
 	public static void validate(String rowProduct, List<Product> productList) {
 		String[] product = rowProduct.split(Sign.PRODUCT_DIVISOR);
 
@@ -28,23 +27,24 @@ public class InputProductValidator {
 		isFormat(rowProduct);
 		price(product[ProductUnit.PRICE]);
 		stock((product[ProductUnit.STOCK]));
-		isDistinct(product[ProductUnit.NAME],productList);
+		isDistinct(product[ProductUnit.NAME], productList);
 	}
 
 	private static void isBlank(String[] product) {
 		Arrays
 			.stream(product)
-			.forEach(unit -> GlobalValidator.validateInputIsBlank(unit.replaceAll(Sign.SPACE, Sign.NULL), IS_BLANK_ERROR));
+			.forEach(
+				unit -> GlobalValidator.validateInputIsBlank(unit.replaceAll(Sign.SPACE, Sign.NULL), IS_BLANK_ERROR));
 	}
 
 	private static void isFormat(String input) {
-		if(input.charAt(0) =='[' || input.charAt(input.length()-1) == ']') {
+		if (input.charAt(0) == Sign.OPEN_BRACKET || input.charAt(input.length() - 1) == Sign.CLOSE_BRACKET) {
 			throw new IllegalArgumentException(IS_NOT_RIGHT_FORMAT);
 		}
 	}
 
 	private static void isLengthThree(String[] product) {
-		if(product.length != PRODUCT_LENGTH) {
+		if (product.length != PRODUCT_LENGTH) {
 			throw new IllegalArgumentException(IS_NOT_LENGTH_THREE);
 		}
 	}
@@ -55,11 +55,11 @@ public class InputProductValidator {
 	}
 
 	private static void stock(String stock) {
-		GlobalValidator.validateInputIsNaturalNumber(stock,STOCK_IS_NOT_NATURAL_NUMBER);
+		GlobalValidator.validateInputIsNaturalNumber(stock, STOCK_IS_NOT_NATURAL_NUMBER);
 	}
 
 	private static void isDistinct(String name, List<Product> productList) {
-		if(productList.contains(new Product(name,0,0))) {
+		if (productList.contains(new Product(name, 0, 0))) {
 			throw new IllegalArgumentException(IS_DISTINCT_ERROR);
 		}
 	}

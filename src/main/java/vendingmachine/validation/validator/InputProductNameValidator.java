@@ -16,17 +16,17 @@ public class InputProductNameValidator {
 
 		List<Product> StreamProducts
 			= productList.stream().filter(product -> product.getName().equals(name)).collect(Collectors.toList());
-		isNotInList(name, StreamProducts);
-		isOutOfStock(name, StreamProducts);
+		isNotInList(StreamProducts);
+		isOutOfStock(StreamProducts);
 	}
 
-	private static void isNotInList(String name, List<Product> productList) {
+	private static void isNotInList(List<Product> productList) {
 		if (productList.size() == 0) {
 			throw new IllegalArgumentException(IS_NOT_IN_LIST);
 		}
 	}
 
-	private static void isOutOfStock(String name, List<Product> productList) {
+	private static void isOutOfStock(List<Product> productList) {
 		if (productList.get(0).getStock() == 0) {
 			throw new IllegalArgumentException(IS_OUT_OF_STOCK);
 		}

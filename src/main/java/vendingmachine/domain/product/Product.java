@@ -4,8 +4,8 @@ import java.util.Objects;
 
 public class Product implements Comparable<Product> {
 
-	private String name;
-	private int price;
+	private final String name;
+	private final int price;
 	private int stock;
 
 	public Product(String name, int price, int stock) {
