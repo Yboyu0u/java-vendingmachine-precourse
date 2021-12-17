@@ -5,7 +5,7 @@ import java.util.List;
 import vendingmachine.domain.coin.CoinSystem;
 import vendingmachine.domain.product.ProductSystem;
 import vendingmachine.message.Message;
-import vendingmachine.message.dto.ResponseMessage;
+import vendingmachine.view.OutputView;
 
 public class VendingMachine {
 
@@ -24,8 +24,6 @@ public class VendingMachine {
 	}
 
 	public void getCoin() {
-		ResponseMessage.printLineBreaker();
-		ResponseMessage.of(Message.PRINT_VENDING_MACHINE_COIN);
 		coinSystem.getCoinInCoinMap();
 	}
 
@@ -40,7 +38,7 @@ public class VendingMachine {
 	}
 
 	public void getInputCost() {
-		ResponseMessage.printInputCost(inputCost);
+		OutputView.printInputCost(inputCost);
 	}
 
 	public void subtractInputCostAndProductStockByProduct(String productName) {
@@ -52,7 +50,6 @@ public class VendingMachine {
 	}
 
 	public void getChangeCoin() {
-		ResponseMessage.printChange();
 		coinSystem.getCalculatedChangeCoin(inputCost);
 	}
 }

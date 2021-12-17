@@ -27,7 +27,7 @@ public class ProductSystem {
 
 		String[] product = rowProduct
 			.replaceAll("\\[", Sign.NULL)
-			.replaceAll("\\]", Sign.NULL)
+			.replaceAll("]", Sign.NULL)
 			.split(Sign.PRODUCT_DIVISOR);
 
 		productList.add(new Product(product[ProductUnit.NAME], Integer.parseInt(product[ProductUnit.PRICE]),

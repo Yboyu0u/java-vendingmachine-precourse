@@ -12,5 +12,4 @@ public class InputVendingMachineMoneyValidator {
 		GlobalValidator.validateInputIsNaturalNumber(input, IS_NOT_NATURAL_NUMBER_ERROR);
 		GlobalValidator.validateInputIsDivideTen(input, IS_NOT_DIVIDE_TEN);
 	}
-
 }

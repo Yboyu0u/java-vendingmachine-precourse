@@ -22,7 +22,7 @@ public class InputProductValidator {
 	public static void validate(String rowProduct, List<Product> productList) {
 		String[] product = rowProduct
 			.replaceAll("\\[", Sign.NULL)
-			.replaceAll("\\]", Sign.NULL)
+			.replaceAll("]", Sign.NULL)
 			.split(Sign.PRODUCT_DIVISOR);
 
 		isBlank(product);

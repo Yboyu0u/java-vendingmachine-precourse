@@ -5,7 +5,8 @@ import java.util.Comparator;
 import java.util.Map;
 import java.util.TreeMap;
 
-import vendingmachine.message.dto.ResponseMessage;
+import vendingmachine.message.Message;
+import vendingmachine.view.OutputView;
 import vendingmachine.utils.RandomCoinUtil;
 
 public class CoinSystem {
@@ -36,11 +37,11 @@ public class CoinSystem {
 	}
 
 	public void getCoinInCoinMap() {
-		ResponseMessage.printCoinInMap(coinMap);
+		OutputView.printCoinVendingMachineHold(coinMap);
 	}
 
 	public void getCalculatedChangeCoin(int inputCost) {
-		ResponseMessage.printCoinInMap(calculateChangeCoin(inputCost));
+		OutputView.printChange(calculateChangeCoin(inputCost));
 	}
 
 	private Map<Integer, Integer> calculateChangeCoin(int inputCost) {

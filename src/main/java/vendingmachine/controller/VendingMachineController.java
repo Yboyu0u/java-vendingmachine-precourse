@@ -1,9 +1,8 @@
 package vendingmachine.controller;
 
 import camp.nextstep.edu.missionutils.Console;
-import vendingmachine.message.Message;
-import vendingmachine.message.dto.ResponseError;
-import vendingmachine.message.dto.ResponseMessage;
+import vendingmachine.validation.dto.ResponseError;
+import vendingmachine.view.InputView;
 import vendingmachine.service.VendingMachineService;
 
 public class VendingMachineController {
@@ -16,7 +15,7 @@ public class VendingMachineController {
 
 	public void postMoneyVendingMachineHas() {
 		try {
-			ResponseMessage.of(Message.ENTER_MONEY_VENDING_MACHINE_HAS);
+			InputView.printEnterMoneyInVendingMachine();
 			vendingMachineService.postMoneyVendingMachineHas(Console.readLine());
 		} catch (IllegalArgumentException e) {
 			ResponseError.of(e.getMessage());
@@ -26,7 +25,7 @@ public class VendingMachineController {
 
 	public void postProductInformation() {
 		try {
-			ResponseMessage.of(Message.ENTER_PRODUCT_INFORMATION);
+			InputView.printEnterProducts();
 			vendingMachineService.postProductInformation(Console.readLine());
 		} catch (IllegalArgumentException e) {
 			ResponseError.of(e.getMessage());
@@ -36,8 +35,7 @@ public class VendingMachineController {
 
 	public void postInputCost() {
 		try {
-			ResponseMessage.printLineBreaker();
-			ResponseMessage.of(Message.ENTER_INPUT_COST);
+			InputView.printEnterInputCost();
 			vendingMachineService.postInputCost(Console.readLine());
 		} catch (IllegalArgumentException e) {
 			ResponseError.of(e.getMessage());
@@ -49,7 +47,7 @@ public class VendingMachineController {
 		try {
 			boolean start = true;
 			while (start) {
-				ResponseMessage.of(Message.ENTER_PRODUCT_NAME_BE_PURCHASE);
+				InputView.printEnterBePurchaseProduct();
 				start = vendingMachineService.postProductNameBePurchase(Console.readLine());
 			}
 		} catch (IllegalArgumentException e) {
