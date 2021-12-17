@@ -11,6 +11,4 @@ public class Message {
 	public static final String PRINT_CHANGE = "잔돈";
 	public static final String MONEY_UNIT = "원";
 	public static final String AMOUNT_UNIT = "개";
-	public static final String LINE_BREAKER = "\n";
-
 }

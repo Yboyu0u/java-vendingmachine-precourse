@@ -1,4 +1,4 @@
-package vendingmachine.validation.dto;
+package vendingmachine.exception.dto;
 
 public class ResponseError {
 

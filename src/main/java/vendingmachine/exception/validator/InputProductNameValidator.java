@@ -1,10 +1,10 @@
-package vendingmachine.validation.validator;
+package vendingmachine.exception.validator;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 import vendingmachine.domain.product.Product;
-import vendingmachine.validation.GlobalValidator;
+import vendingmachine.exception.GlobalValidator;
 
 public class InputProductNameValidator {
 	private static final String IS_BLANK_ERROR = "구입할 상품명은 빈 값일 수 없습니다.";

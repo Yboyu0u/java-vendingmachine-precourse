@@ -15,7 +15,7 @@ public class InputView {
 
 	public static void printEnterInputCost() {
 		System.out.println();
-		System.out.print(Message.PRINT_INPUT_COST);
+		System.out.println(Message.ENTER_INPUT_COST);
 	}
 
 	public static void printEnterBePurchaseProduct() {

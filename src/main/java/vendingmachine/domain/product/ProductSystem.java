@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import vendingmachine.message.Sign;
-import vendingmachine.validation.validator.InputProductNameValidator;
-import vendingmachine.validation.validator.InputProductValidator;
+import vendingmachine.exception.validator.InputProductNameValidator;
+import vendingmachine.exception.validator.InputProductValidator;
 
 public class ProductSystem {
 

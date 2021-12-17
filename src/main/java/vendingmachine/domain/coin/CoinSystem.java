@@ -5,23 +5,22 @@ import java.util.Comparator;
 import java.util.Map;
 import java.util.TreeMap;
 
-import vendingmachine.message.Message;
-import vendingmachine.view.OutputView;
 import vendingmachine.utils.RandomCoinUtil;
+import vendingmachine.view.OutputView;
 
 public class CoinSystem {
-	private Map<Integer, Integer> coinMap;
-	private Map<Integer, Integer> changeMap;
+	private final Map<Coin, Integer> coinMap;
+	private Map<Coin, Integer> changeMap;
 	private int change;
 
 	public CoinSystem() {
-		this.coinMap = new TreeMap<>(Collections.reverseOrder());
+		this.coinMap = new TreeMap<>();
 		for (Coin coin : Coin.values()) {
-			coinMap.put(coin.getAmount(), 0);
+			coinMap.put(Coin.mapToCoin(coin.getAmount()), 0);
 		}
 	}
 
-	public void inCoinMap(int money) {
+	public void insertCoinInCoinMap(int money) {
 		while (money > 0) {
 			money = subtractMoney(money, RandomCoinUtil.generateRandomCoin());
 		}
@@ -29,7 +28,7 @@ public class CoinSystem {
 
 	private int subtractMoney(int money, int randomCoin) {
 		if (money >= randomCoin) {
-			coinMap.put(randomCoin, coinMap.get(randomCoin) + 1);
+			coinMap.put(Coin.mapToCoin(randomCoin), coinMap.get(Coin.mapToCoin(randomCoin)) + 1);
 			money -= randomCoin;
 		}
 
@@ -44,28 +43,30 @@ public class CoinSystem {
 		OutputView.printChange(calculateChangeCoin(inputCost));
 	}
 
-	private Map<Integer, Integer> calculateChangeCoin(int inputCost) {
+	private Map<Coin, Integer> calculateChangeCoin(int inputCost) {
 		change = Math.min(inputCost, getSumOfCoin());
-		changeMap = new TreeMap<>(Comparator.reverseOrder());
+		changeMap = new TreeMap<>();
 		coinMap.keySet().forEach(key -> addChangeMapToCoin(key, coinMap.get(key)));
 
 		return changeMap;
 	}
 
 	private int getSumOfCoin() {
-		return coinMap.keySet().stream().map(key -> key * coinMap.get(key)).reduce(0, Integer::sum);
+		return coinMap.keySet().stream()
+			.mapToInt(key -> key.getAmount() * coinMap.get(key))
+			.sum();
 	}
 
-	private void addChangeMapToCoin(int key, int value) {
+	private void addChangeMapToCoin(Coin coin, int value) {
 		for (int i = 0; i < value; i++) {
-			if (change < key || change == 0) {
+			if (change < coin.getAmount() || change == 0) {
 				return;
 			}
 
-			if (change >= key) {
-				changeMap.put(key, changeMap.getOrDefault(key, 0) + 1);
-				coinMap.put(key, coinMap.get(key) - 1);
-				change -= key;
+			if (change >= coin.getAmount()) {
+				changeMap.put(coin, changeMap.getOrDefault(coin, 0) + 1);
+				coinMap.put(coin, coinMap.get(coin) - 1);
+				change -= coin.getAmount();
 			}
 		}
 	}

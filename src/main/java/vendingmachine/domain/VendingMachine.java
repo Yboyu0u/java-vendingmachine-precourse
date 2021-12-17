@@ -4,7 +4,6 @@ import java.util.List;
 
 import vendingmachine.domain.coin.CoinSystem;
 import vendingmachine.domain.product.ProductSystem;
-import vendingmachine.message.Message;
 import vendingmachine.view.OutputView;
 
 public class VendingMachine {
@@ -20,7 +19,7 @@ public class VendingMachine {
 	}
 
 	public void makeCoin(int money) {
-		coinSystem.inCoinMap(money);
+		coinSystem.insertCoinInCoinMap(money);
 	}
 
 	public void getCoin() {

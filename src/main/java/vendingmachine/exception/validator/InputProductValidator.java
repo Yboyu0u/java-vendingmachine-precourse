@@ -1,4 +1,4 @@
-package vendingmachine.validation.validator;
+package vendingmachine.exception.validator;
 
 import java.util.Arrays;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import vendingmachine.domain.product.Product;
 import vendingmachine.domain.product.ProductUnit;
 import vendingmachine.message.Sign;
-import vendingmachine.validation.GlobalValidator;
+import vendingmachine.exception.GlobalValidator;
 
 public class InputProductValidator {
 	private static final int PRODUCT_LENGTH = 3;

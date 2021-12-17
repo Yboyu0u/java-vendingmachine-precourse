@@ -22,6 +22,12 @@ public enum Coin {
             .collect(Collectors.toList());
     }
 
+    public static Coin mapToCoin(int coinAmount) {
+        return Arrays.stream(Coin.values())
+            .filter(coin -> coin.amount == coinAmount)
+            .findFirst().get();
+    }
+
     public int getAmount() {
         return amount;
     }

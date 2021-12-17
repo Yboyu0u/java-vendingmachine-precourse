@@ -1,6 +1,6 @@
-package vendingmachine.validation.validator;
+package vendingmachine.exception.validator;
 
-import vendingmachine.validation.GlobalValidator;
+import vendingmachine.exception.GlobalValidator;
 
 public class InputProductsValidator {
 	private static final String IS_BLANK_ERROR = "상품들은 빈 값일 수 없습니다.";

@@ -1,4 +1,4 @@
-package vendingmachine.validation;
+package vendingmachine.exception;
 
 import vendingmachine.message.Sign;
 

@@ -1,7 +1,7 @@
 package vendingmachine.controller;
 
 import camp.nextstep.edu.missionutils.Console;
-import vendingmachine.validation.dto.ResponseError;
+import vendingmachine.exception.dto.ResponseError;
 import vendingmachine.view.InputView;
 import vendingmachine.service.VendingMachineService;
 
